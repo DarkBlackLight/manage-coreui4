@@ -33,9 +33,20 @@
   border-radius: 0.05rem;
 }
 
-body {
-  --cui-font-size-base: 14px;
+:root {
+  --cui-font-size-base: 0.875rem;
 }
+
+.form-control {
+  border-radius: 0 !important;
+  font-size: var(--cui-font-size-base);
+}
+
+.btn {
+  border-radius: 0 !important;
+  font-size: var(--cui-font-size-base);
+}
+
 
 //.header {
 //  padding: 0 0.5rem;

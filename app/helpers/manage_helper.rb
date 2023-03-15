@@ -80,8 +80,16 @@ module ManageHelper
   def manage_text_tag(label, name, value, options = {})
     options[:class] = "#{options[:class]} form-control"
     manage_tag = (text_field_tag name, value, options)
-    tag.div class: 'form-group' do
-      (label ? ((label_tag label) + manage_tag) : manage_tag)
+    tag.div class: 'mb-3' do
+      (label ? ((label_tag label, nil, class: 'form-label') + manage_tag) : manage_tag)
+    end
+  end
+
+  def manage_file_tag(label, name, options = {})
+    options[:class] = "#{options[:class]} form-control"
+    manage_tag = (file_field_tag name, options)
+    tag.div class: 'mb-3' do
+      (label ? ((label_tag label, nil, class: 'form-label') + manage_tag) : manage_tag)
     end
   end
 

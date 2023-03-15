@@ -72,6 +72,12 @@ end
 rails manage_coreui4:copy_public
 ```
 
+9. 添加以下内容至 app/helpers/application_helper.rb
+
+```ruby
+  include ManageHelper
+```
+
 ## Contributing
 
 Contribution directions go here.
