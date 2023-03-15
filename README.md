@@ -1,28 +1,81 @@
 # Manage::Coreui4
+
 Short description and motivation.
 
-## Usage
-How to use my plugin.
+## 安装方法
 
-## Installation
-Add this line to your application's Gemfile:
+### 以scope为"admin"为例
+
+1. 添加以下内容到Gemfile
 
 ```ruby
 gem "manage-coreui4"
+gem "sassc-rails"
 ```
 
-And then execute:
+2. 运行以下命令
+
 ```bash
 $ bundle
 ```
 
-Or install it yourself as:
+3. 创建 app/controllers/admin_controller.rb
+
+```ruby
+
+class AdminController < ApplicationController
+  include ManageControllerConcern
+
+  private
+
+  def setup_config
+    @config = {
+      scope: 'admin',
+      routes: [
+      ]
+    }
+  end
+end
+```
+
+4. 创建 app/controllers/admin/resources_controller.rb
+
+```ruby
+
+class Admin::ResourcesController < AdminController
+  include ManageResourcesConcern
+end
+```
+
+5. 创建 app/assets/stylesheets/admin.scss
+
+```scss
+@import "manage";
+```
+
+6. 创建 app/assets/javascripts/admin.js
+
+```js
+//= require manage
+```
+
+7. 用以下内容覆盖 app/assets/config/manifest.js
+
+```js
+//= link admin.js
+//= link admin.css
+```
+
+8. 运行以下命令
+
 ```bash
-$ gem install manage-coreui4
+rails manage_coreui4:copy_public
 ```
 
 ## Contributing
+
 Contribution directions go here.
 
 ## License
+
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manage coreui4</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+  <!-- Vendors styles-->
+  <link rel="stylesheet" href="/manage/vendors/simplebar/css/simplebar.css">
+  <link rel="stylesheet" href="/manage/css/vendors/simplebar.css">
+  <!-- Main styles for this application-->
+  <link href="/manage/css/style.min.css" rel="stylesheet">
+
+  <%= stylesheet_link_tag @config[:scope], media: "all" %>
+  <%= javascript_include_tag @config[:scope], 'data-turbolinks-track': 'reload' %>
+</head>
+<body class="controller-<%= controller_name %> action-<%= action_name %>">
+<%= render 'layouts/manage/sidebar' %>
+<div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
+  <%= render 'layouts/manage/header' %>
+  <div class="body flex-grow-1 px-1">
+    <div class="container-lg">
+      <%= yield %>
+    </div>
+  </div>
+
+  <%#= render 'layouts/manage/footer' %>
+</div>
+
+<script src="/manage/vendors/@coreui/coreui-pro/js/coreui.bundle.min.js"></script>
+<script src="/manage/vendors/simplebar/js/simplebar.min.js"></script>
+<script>
+    if (document.body.classList.contains('dark-theme')) {
+        var element = document.getElementById('btn-dark-theme');
+        if (typeof (element) != 'undefined' && element != null) {
+            document.getElementById('btn-dark-theme').checked = true;
+        }
+    } else {
+        var element = document.getElementById('btn-light-theme');
+        if (typeof (element) != 'undefined' && element != null) {
+            document.getElementById('btn-light-theme').checked = true;
+        }
+    }
+
+    function handleThemeChange(src) {
+        var event = document.createEvent('Event');
+        event.initEvent('themeChange', true, true);
+
+        if (src.value === 'light') {
+            document.body.classList.remove('dark-theme');
+        }
+        if (src.value === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+        document.body.dispatchEvent(event);
+    }
+</script>
+</body>
+</html>
